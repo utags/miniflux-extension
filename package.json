@@ -1,18 +1,18 @@
 {
-  "name": "my-extension",
-  "displayName": "My-Extension",
-  "displayName:zh-CN": "我的扩展",
-  "version": "0.1.0",
-  "description": "try to take over the world!",
-  "description:zh-CN": "让世界更美好！",
-  "author": "You",
-  "namespace": "https://github.com/utags/browser-extension-starter",
-  "icon": "https://www.tampermonkey.net/favicon.ico",
+  "name": "miniflux-extension",
+  "displayName": "Miniflux Extension",
+  "displayName:zh-CN": "Miniflux Extension",
+  "version": "0.0.1",
+  "description": "An extension for Miniflux RSS reader",
+  "description:zh-CN": "Miniflux RSS 阅读器扩展",
+  "author": "Pipecraft",
+  "namespace": "https://github.com/utags/miniflux-extension",
+  "icon": "https://miniflux.app/favicon.ico",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/utags/browser-extension-starter/issues"
+    "url": "https://github.com/utags/miniflux-extension/issues"
   },
-  "homepage": "https://github.com/utags/browser-extension-starter#readme",
+  "homepage": "https://github.com/utags/miniflux-extension#readme",
   "scripts": {
     "p": "prettier --write .",
     "lint": "run-s lint:*",
