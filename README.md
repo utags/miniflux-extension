@@ -1,4 +1,25 @@
-# Browser Extension Starter and Userscript Starter
+# Miniflux Extension
+
+An extension for Miniflux RSS reader.
+
+- Display categories on left section
+
+![screenshots](assets/miniflux-extension-screenshots-01.png)
+
+- After install this script, add miniflux site to "User matches" rules on the settings of this userscript
+
+![screenshots](assets/miniflux-extension-screenshots-02.png)
+
+## Installation
+
+- Chrome Extension: [Manual Installation](manual-installation.md)
+- Edge Extension: [Manual Installation](manual-installation.md)
+- Firefox Addon: [Manual Installation](manual-installation.md)
+- Userscript: [https://greasyfork.org/scripts/464299-miniflux-extension](https://greasyfork.org/scripts/464299-miniflux-extension)
+
+## Development
+
+This extension/userscript is built from [Browser Extension Starter and Userscript Starter](https://github.com/PipecraftNet/browser-extension-starter)
 
 ## Features
 
