@@ -15,15 +15,20 @@ export const config: PlasmoCSConfig = {
   ],
 }
 
+// 1 minute
+const m1 = 1000 * 60
+
 const storageKey = "extension.miniflux.cache"
 
 function getCategoriesFromCache() {
-  const categoriesText = localStorage.getItem(storageKey) || ""
-  return createElement("div", {
-    class: "items",
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    innerHTML: categoriesText,
-  })
+  const categoriesText = localStorage.getItem(storageKey)
+  return categoriesText
+    ? createElement("div", {
+        class: "items",
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        innerHTML: categoriesText,
+      })
+    : null
 }
 
 async function updateCategories() {
@@ -33,8 +38,8 @@ async function updateCategories() {
     const div = createElement("div")
     div.innerHTML = text
     const categories = $(div, ".items")
-    if (categories) {
-      const categoriesText = localStorage.getItem(storageKey) || ""
+    if (categories?.innerHTML) {
+      const categoriesText = localStorage.getItem(storageKey)
       if (categoriesText !== categories.innerHTML) {
         localStorage.setItem(storageKey, categories.innerHTML)
         return true
@@ -45,37 +50,54 @@ async function updateCategories() {
   return false
 }
 
+const appendCategories = () => {
+  const container = $("[data-miniflux_ext] #left_section")
+  if (!container) {
+    return
+  }
+
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  let categories: Element | null = $("[data-miniflux_ext] #left_section .items")
+  if (categories) {
+    categories.remove()
+  }
+
+  // Load categories from cache
+  categories = getCategoriesFromCache()
+  if (categories) {
+    container.append(categories)
+  }
+}
+
+async function autoUpdateCategories() {
+  if (await updateCategories()) {
+    appendCategories()
+
+    setTimeout(autoUpdateCategories, 3 * m1)
+  } else {
+    setTimeout(autoUpdateCategories, 10 * m1)
+  }
+}
+
 async function main() {
-  if (!document.body || $(".miniflux_ext #left_section")) {
+  if (!document.body || $("[data-miniflux_ext] #left_section")) {
     return
   }
 
   addStyle(styleText)
 
-  document.body.classList.add("miniflux_ext")
-  const left = addElement(document.body, "section", {
+  document.body.dataset.miniflux_ext = "1"
+  addElement(document.body, "section", {
     id: "left_section",
     // eslint-disable-next-line @typescript-eslint/naming-convention
     innerHTML: `<section class="page-header"><h1>Categories</h1></section>`,
   })
 
-  // Load categories from cache
-  let categories = getCategoriesFromCache()
-  if (categories) {
-    left.append(categories)
-  }
+  // Add categories immediately
+  appendCategories()
 
-  // Update cache
-  setTimeout(async () => {
-    if (await updateCategories()) {
-      console.log("updated")
-      categories.remove()
-      categories = getCategoriesFromCache()
-      if (categories) {
-        left.append(categories)
-      }
-    }
-  }, 1000)
+  // Start auto update catetories
+  setTimeout(autoUpdateCategories, 1000)
 }
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises, unicorn/prefer-top-level-await
