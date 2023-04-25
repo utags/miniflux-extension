@@ -14,3 +14,8 @@
 // @match                https://miniflux.pipecraft.net/*
 // ==/UserScript==
 //
+//// Recent Updates
+//// - 0.0.2 2023.04.26
+////    - Add reader.miniflux.app as match site
+////    - Automatically update categories every 10 minutes
+////

@@ -2,7 +2,7 @@
   "name": "miniflux-extension",
   "displayName": "Miniflux Extension",
   "displayName:zh-CN": "Miniflux Extension",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An extension for Miniflux RSS reader",
   "description:zh-CN": "Miniflux RSS 阅读器扩展",
   "author": "Pipecraft",
