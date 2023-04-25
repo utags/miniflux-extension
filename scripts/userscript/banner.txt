@@ -10,6 +10,7 @@
 // @icon                 {icon}
 // @author               {author}
 // @license              {license}
+// @match                https://reader.miniflux.app/*
 // @match                https://miniflux.pipecraft.net/*
 // ==/UserScript==
 //

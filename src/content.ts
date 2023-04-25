@@ -9,7 +9,10 @@ import styleText from "data-text:./content.scss"
 import type { PlasmoCSConfig } from "plasmo"
 
 export const config: PlasmoCSConfig = {
-  matches: ["https://miniflux.pipecraft.net/*"],
+  matches: [
+    "https://reader.miniflux.app/*",
+    "https://miniflux.pipecraft.net/*",
+  ],
 }
 
 const storageKey = "extension.miniflux.cache"
